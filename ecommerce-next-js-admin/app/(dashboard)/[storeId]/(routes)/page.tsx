@@ -1,4 +1,6 @@
-
+interface DashboardPageProps{
+  
+}
 
 const DashboardPage = () => {
   return (
