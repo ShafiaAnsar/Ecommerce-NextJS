@@ -23,7 +23,7 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { Heading } from "@/components/ui/heading"
 import { AlertModal } from "@/components/modals/alert-modal"
-// import { ApiAlert } from "@/components/ui/api-alert"
+import { ApiAlert } from "@/components/ui/api-alert"
 // import { useOrigin } from "@/hooks/use-origin"
 
 const formSchema = z.object({
@@ -98,7 +98,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
           <Trash className="h-4 w-4" />
         </Button>
       </div>
-      <Separator />
+      <Separator className="mt-2" />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
           <div className="grid grid-cols-3 gap-8">
@@ -116,17 +116,17 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
+          <Button disabled={loading} className="ml-auto mb-2" type="submit">
             Save changes
           </Button>
         </form>
       </Form>
-      <Separator />
-      {/* <ApiAlert 
+      <Separator className="mt-2"/>
+      <ApiAlert
         title="NEXT_PUBLIC_API_URL" 
         variant="public" 
-        description={`${origin}/api/${params.storeId}`} */}
-      {/* /> */}
+        description={`${origin}/api/${params.storeId}`}
+      />
     </>
   );
 };
