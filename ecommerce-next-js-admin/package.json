@@ -24,6 +24,7 @@
     "init": "^0.1.2",
     "lucide-react": "^0.292.0",
     "next": "13.4.5",
+    "next-cloudinary": "^5.16.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.48.2",
