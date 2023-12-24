@@ -13,7 +13,12 @@ export function MainNav ({className,...props}:React.HTMLAttributes<HTMLElement>)
         label:'Overview',
         active :pathname === `/${params.storeId}`,
 },
-        {
+{
+  href:`/${params.storeId}/billboards`,
+  label:'Billboards',
+  active :pathname === `/${params.storeId}/billboard`,
+},
+    {
             href:`/${params.storeId}/settings`,
             label:'Settings',
             active :pathname === `/${params.storeId}/settings`,
