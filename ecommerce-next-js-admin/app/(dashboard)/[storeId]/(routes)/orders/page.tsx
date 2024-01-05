@@ -31,7 +31,7 @@ const OrdersPage = async ({
   const formattedOrders: OrderColumn[] = orders.map((item) => ({
     id: item.id,
     phone: item.phone,
-    adress: item.address,
+    address: item.address,
     products: item.orderItems.map((orderItem)=>orderItem.product.name).join(', '),
     totalPrice:formatter.format(item.orderItems.reduce((total,item)=>{
       return total + Number(item.product.price)
