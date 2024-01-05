@@ -1,39 +1,25 @@
 "use client";
 
-import { Plus } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
-
-import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { ApiList } from "@/components/ui/api-list";
 
-import { ColorColumn, columns } from "./columns";
+import { OrderColumn, columns } from "./columns";
 
-interface ColorsClientProps {
-  data: ColorColumn[];
+interface OrdersClientProps {
+  data: OrderColumn[];
 }
 
-export const ColorsClient: React.FC<ColorsClientProps> = ({
+export const OrdersClient: React.FC<OrdersClientProps> = ({
   data
 }) => {
-  const params = useParams();
-  const router = useRouter();
-
   return (
     <>
       <div className="flex items-center justify-between">
-        <Heading title={`Colors (${data.length})`} description="Manage colors for your products" />
-        <Button onClick={() => router.push(`/${params.storeId}/colors/new`)}>
-          <Plus className="mr-2 h-4 w-4" /> Add New
-        </Button>
+        <Heading title={`Orders (${data.length})`} description="Manage orders for your products" />
       </div>
       <Separator />
       <DataTable searchKey="name" columns={columns} data={data} />
-      <Heading title="API" description="API Calls for Colors" />
-      <Separator />
-      <ApiList entityName="colors" entityIdName="colorId" />
     </>
   );
 };

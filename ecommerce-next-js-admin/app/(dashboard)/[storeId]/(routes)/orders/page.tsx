@@ -3,37 +3,50 @@ import { format } from "date-fns";
 import prismadb from "@/lib/prismadb";
 
 import { 
-  ColorColumn } from "./components/columns"
-import { ColorsClient } from "./components/client";
+  OrderColumn } from "./components/columns"
+import { OrdersClient } from "./components/client";
+import { formatter } from "@/lib/utils";
 
-const ColorsPage = async ({
+const OrdersPage = async ({
   params
 }: {
   params: { storeId: string }
 }) => {
-  const colors = await prismadb.color.findMany({
+  const orders = await prismadb.order.findMany({
     where: {
       storeId: params.storeId
+    },
+    include:{
+      orderItems:{
+        include:{
+          product:true
+        }
+      }
     },
     orderBy: {
       createdAt: 'desc'
     }
   });
 
-  const formattedColors: ColorColumn[] = colors.map((item) => ({
+  const formattedOrders: OrderColumn[] = orders.map((item) => ({
     id: item.id,
-    name: item.name,
-    value: item.value,
+    phone: item.phone,
+    adress: item.address,
+    products: item.orderItems.map((orderItem)=>orderItem.product.name).join(', '),
+    totalPrice:formatter.format(item.orderItems.reduce((total,item)=>{
+      return total + Number(item.product.price)
+    },0)),
+    isPaid:item.isPaid,
     createdAt: format(item.createdAt, 'MMMM do, yyyy'),
   }));
 
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <ColorsClient data={formattedColors} />
+        <OrdersClient data={formattedOrders} />
       </div>
     </div>
   );
 };
 
-export default ColorsPage;
+export default OrdersPage;
