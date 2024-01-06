@@ -2,6 +2,7 @@ import Link from "next/link"
 import Container from "./ui/container"
 import MainNav from "./MainNav"
 import getCategories from "@/actions/getCategories"
+import NavbarActions from "./NavbarActions"
 export const revalidate = 0
 const Navbar =  async() => {
   const categories = await getCategories()
@@ -15,6 +16,7 @@ const Navbar =  async() => {
         </p>
         </Link>
         <MainNav data={categories}/>
+        <NavbarActions/>
         </div>
         Navbar
       </Container>
