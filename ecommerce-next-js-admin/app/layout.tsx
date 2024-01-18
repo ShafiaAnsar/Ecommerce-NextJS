@@ -5,6 +5,7 @@ import prismadb from '@/lib/prismadb'
 import {ClerkProvider} from '@clerk/nextjs'
 import { ModalProvider } from '@/providers/Modal-provider'
 import { ToasterProvider } from '@/providers/toast-provider'
+import { ThemeProvider } from '@/providers/ThemeProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -22,9 +23,12 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body className={inter.className}>
+        <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
+
         <ToasterProvider/>
         <ModalProvider/>
         {children}
+        </ThemeProvider>
         </body>
     </html>
     </ClerkProvider>
